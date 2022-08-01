@@ -21,7 +21,7 @@ const createRequest = (obj) => {
 }
 
 const createObject = (responseData) => {
-  return {...responseData.attributes, id: responseData.id}
+  return {...responseData.attributes, id: parseInt(responseData.id)}
 }
 
 export const postRecipeAsync = (url) => {
@@ -45,9 +45,25 @@ export const getAllRecipesAsync = () => {
       `${baseURL}/titles/`, HEADERS
     )
     .then((response) => {
-      return response.data.data.map(createObject);
+      console.log(response.data.data);
+      const newThing = response.data.data.map(createObject);
+      console.log(newThing)
+      return newThing;
     })
     .catch((err) => {
       console.log(err.message);
     });
 };
+
+export const getFullRecipeAsync = (id) => {
+  return axios
+    .get(
+      `${baseURL}/recipes/${id}/`, HEADERS
+    )
+    .then((response) => {
+      return createObject(response.data.data);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    })
+}
