@@ -45,9 +45,9 @@ export const getAllRecipesAsync = () => {
       `${baseURL}/titles/`, HEADERS
     )
     .then((response) => {
-      return response.data;
+      return response.data.data.map(createObject);
     })
     .catch((err) => {
-      console.log("Error getting all recipes")
+      console.log(err.message);
     });
 };
