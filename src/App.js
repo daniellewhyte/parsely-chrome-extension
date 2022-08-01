@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Form from "./Form.js";
+import Recipe from "./Recipe.js";
 import { postRecipeAsync, getAllRecipesAsync } from "./apiCalls";
 import axios from "axios";
 
@@ -10,42 +11,53 @@ axios.defaults.headers.post['Content-Type'] = 'application/vnd.api+json';
 function App() {
 
   const [recipeData, setRecipeData] = useState([]);
-  //data: list of recipe titles
-
-  const createObject = (responseData) => {
-    return responseData.data.attributes
-  }
+  //recipeData: list of recipe titles
 
   const getAllRecipes = () => {
     getAllRecipesAsync()
-    .then((recipes) => {
-      const listOfRecipes = recipes.map((recipe) => {
-        return createObject(recipe);
+    .then((listOfRecipes) => {
+      setRecipeData(listOfRecipes);
       })
-      return listOfRecipes;
-    })
     .catch((err) => {
-      console.log(err.data.message);
+      console.log(err.message);
     })
   }
+
+  // const update = () => {
+  //   const newRecipeData = getAllRecipes();
+  //   setRecipeData(newRecipeData);
+  // };
+
+  useEffect(() => {
+    getAllRecipes();
+  }, []);
 
   const postRecipe = (url) => {
     postRecipeAsync(url)
     .then(() => {
-      update();
+      getAllRecipes();
     });
-  };
-
-  const update = () => {
-    const newRecipeData = getAllRecipes();
-    setRecipeData(newRecipeData);
   };
 
   const onFormSubmit = (url) => {
     postRecipe(url);
   };
 
-  return <Form onSubmit={onFormSubmit} />;
+  const recipeElements = recipeData.map(
+    (recipe) => {
+      return <li><Recipe recipe={recipe} /></li>;
+    }
+  );
+
+  console.log(recipeData)
+
+  return (
+    <div>
+      <Form onSubmit={onFormSubmit} />
+      <ul>{recipeElements}</ul>
+    </div>
+
+  );
 }
 
 export default App;
