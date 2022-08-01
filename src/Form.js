@@ -1,20 +1,35 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-const Form = () => {
-  const [url, setUrl] = useState('');
+const Form = (props) => {
+  const [currentURL, setURL] = useState("");
 
-  const getUrl = (changeEvent) => {
-    setUrl(changeEvent.target.value)
-  }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setURL(event.target.value);
+    props.onSubmit(currentURL);
+  };
+
+  const getURL = (event) => {
+    setURL(event.target.value);
+  };
 
   return (
-    <section>
-      <input type="text" value="Enter URL" onChange={getUrl}/>
-      <input type="submit" value="Download" onChange={getUrl}/>
-      <button>My Recipes</button>
-    </section>
-  )
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder="Enter URL"
+        onChange={getURL}
+        ></input>
+      <input
+        type="submit"
+        value="Download"
+        ></input>
+      <button>
+        My Recipes
+      </button>
+    </form>
+  );
 };
 
 export default Form;
