@@ -4,9 +4,8 @@ import Form from "./Form.js";
 import Recipe from "./Recipe.js";
 import { postRecipeAsync, getAllRecipesAsync } from "./apiCalls";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
-axios.defaults.baseURL = 'https://parsely-backend.herokuapp.com';
-axios.defaults.headers.post['Content-Type'] = 'application/vnd.api+json';
 
 function App() {
 
@@ -43,20 +42,30 @@ function App() {
     postRecipe(url);
   };
 
-  const recipeElements = recipeData.map(
-    (recipe) => {
-      return <li><Recipe recipe={recipe} /></li>;
-    }
-  );
+
+  // const recipeElements = recipeData.map(
+  //   (recipe) => {
+  //     return <li><Recipe recipe={recipe} /></li>;
+  //   }
+  // );
 
   console.log(recipeData)
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/my-recipes');
+  }
 
   return (
     <div>
       <Form onSubmit={onFormSubmit} />
-      <ul>{recipeElements}</ul>
+      <button
+      onClick={handleClick}
+      >
+        My Recipes
+      </button>
     </div>
-
   );
 }
 
