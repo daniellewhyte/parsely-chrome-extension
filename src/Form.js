@@ -25,9 +25,6 @@ const Form = (props) => {
         type="submit"
         value="Download"
         ></input>
-      <button>
-        My Recipes
-      </button>
     </form>
   );
 };
