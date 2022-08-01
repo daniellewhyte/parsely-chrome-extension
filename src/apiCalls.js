@@ -20,6 +20,10 @@ const createRequest = (obj) => {
   )
 }
 
+const createObject = (responseData) => {
+  return {...responseData.attributes, id: responseData.id}
+}
+
 export const postRecipeAsync = (url) => {
   return axios
     .post(
