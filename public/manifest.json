@@ -1,7 +1,7 @@
 {
     "name": "Parsely",
     "icons": {    "16": "favicon.ico",    "48": "logo192.png",   "128": "logo512.png"  },  
-    "permissions": [],  
+    "permissions": ["storage", "activeTab", "scripting"],
     "manifest_version": 3,  
     "version": "0.0.1",  
     "action": {
