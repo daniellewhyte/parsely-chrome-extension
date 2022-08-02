@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { getAllRecipesAsync, getFullRecipeAsync } from "./apiCalls";
+import "./RecipeList.css";
 
 const RecipeList = () => {
   const [recipeData, setRecipeData] = useState([]);
@@ -37,18 +38,19 @@ const RecipeList = () => {
       showRecipe(recipe.id);
     };
     return (
-      <button key={recipe.id} onClick={handleClick}>
+      <button key={recipe.id} onClick={handleClick} className="recipe-link">
         {recipe.title}{" "}
       </button>
     );
   });
 
   return (
-    <div>
-      <section>
+    <div className="grid-container">
+      <section className="recipe-link-container">
+        <h2> All Recipes </h2>
         {recipeButtons}
       </section>
-      <section>
+      <section className="full-recipe-container">
         <h2>{fullRecipe.title}</h2>
         <p>{fullRecipe.ingredients}</p>
         <p>{fullRecipe.instructions}</p>
