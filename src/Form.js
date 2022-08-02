@@ -32,4 +32,8 @@ const Form = (props) => {
   );
 };
 
+Form.propTypes = {
+  onSubmit: PropTypes.func,
+}
+
 export default Form;
