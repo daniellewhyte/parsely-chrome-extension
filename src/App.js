@@ -1,37 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Form from "./Form.js";
-import { postRecipeAsync, getAllRecipesAsync } from "./apiCalls";
-import axios from "axios";
-
-axios.defaults.baseURL = 'https://parsely-backend.herokuapp.com';
-axios.defaults.headers.post['Content-Type'] = 'application/vnd.api+json';
+import { postRecipeAsync, getAllRecipesAsync, getFullRecipeAsync } from "./apiCalls";
+import RecipeList from "./RecipeList";
 
 function App() {
-
   const [recipeData, setRecipeData] = useState([]);
-  //data: list of recipe titles
-
-  const createObject = (responseData) => {
-    return responseData.data.attributes
-  }
+  const [fullRecipe, setFullRecipe] = useState({
+    title: "",
+    instructions: "",
+    ingredients: "",
+  });
 
   const getAllRecipes = () => {
     getAllRecipesAsync()
-    .then((recipes) => {
-      const listOfRecipes = recipes.map((recipe) => {
-        return createObject(recipe);
+      .then((recipes) => {
+        setRecipeData(recipes);
       })
-      return listOfRecipes;
-    })
-    .catch((err) => {
-      console.log(err.data.message);
-    })
-  }
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
+  useEffect(getAllRecipes, [recipeData]);
 
   const postRecipe = (url) => {
-    postRecipeAsync(url)
-    .then(() => {
+    postRecipeAsync(url).then(() => {
       update();
     });
   };
