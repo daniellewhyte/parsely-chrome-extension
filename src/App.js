@@ -3,6 +3,7 @@ import "./App.css";
 import Form from "./Form.js";
 import { postRecipeAsync, getAllRecipesAsync, getFullRecipeAsync } from "./apiCalls";
 import RecipeList from "./RecipeList";
+import {Link, Outlet} from "react-router-dom";
 
 function App() {
   const [recipeData, setRecipeData] = useState([]);
@@ -52,12 +53,16 @@ function App() {
   return (
     <div>
       <Form onSubmit={onFormSubmit} />
-      <RecipeList recipeData={recipeData} onButtonClick={showRecipe} />
+      {/* <RecipeList recipeData={recipeData} onButtonClick={showRecipe} />
       <section>
       <h2>{fullRecipe.title}</h2>
       <p>{fullRecipe.ingredients}</p>
       <p>{fullRecipe.instructions}</p>
-      </section>
+      </section> */}
+      <div>
+        <Link to="/my-recipes" target="_blank">My Recipes</Link> | {" "}
+      </div>
+      <Outlet/>
     </div>
   );
 }
