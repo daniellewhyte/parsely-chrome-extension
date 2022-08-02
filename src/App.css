@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,39 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+* {
+  font-family: Avenir;
+}
+
+.main-popup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#submit-button {
+  align-self: center;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+form input {
+  margin: 5px;
+  width: 200px;
+}
+
+/* .button {
+  width: 100px;
+} */
+
+#my-recipes-btn {
+  margin-left: 10px;
+  width: 200px;
 }
