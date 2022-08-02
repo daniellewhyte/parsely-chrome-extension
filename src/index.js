@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import AppRoutes from './Routes';
 import RecipeList from './RecipeList'
 import reportWebVitals from './reportWebVitals';
 import { HashRouter, Routes, Route } from 'react-router-dom';
