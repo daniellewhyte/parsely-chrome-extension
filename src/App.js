@@ -39,7 +39,27 @@ function App() {
     postRecipe(url);
   };
 
-  return <Form onSubmit={onFormSubmit} />;
+  const showRecipe = (id) => {
+    getFullRecipeAsync(id)
+    .then((recipe) => {
+      setFullRecipe(recipe);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    })
+  };
+
+  return (
+    <div>
+      <Form onSubmit={onFormSubmit} />
+      <RecipeList recipeData={recipeData} onButtonClick={showRecipe} />
+      <section>
+      <h2>{fullRecipe.title}</h2>
+      <p>{fullRecipe.ingredients}</p>
+      <p>{fullRecipe.instructions}</p>
+      </section>
+    </div>
+  );
 }
 
 export default App;
