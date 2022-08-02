@@ -20,6 +20,10 @@ const createRequest = (obj) => {
   )
 }
 
+const createObject = (responseData) => {
+  return {...responseData.attributes, id: responseData.id};
+};
+
 export const postRecipeAsync = (url) => {
   return axios
     .post(
@@ -41,9 +45,22 @@ export const getAllRecipesAsync = () => {
       `${baseURL}/titles/`, HEADERS
     )
     .then((response) => {
-      return response.data;
+      return response.data.data.map(createObject);
     })
     .catch((err) => {
-      console.log("Error getting all recipes")
+      console.log(err.message);
     });
 };
+
+export const getFullRecipeAsync = (id) => {
+  return axios
+    .get(
+      `${baseURL}/recipes/${id}`, HEADERS
+    )
+    .then((response) => {
+      return createObject(response.data.data)
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+}
