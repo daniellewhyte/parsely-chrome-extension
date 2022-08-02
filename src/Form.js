@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import "./App.css"
 
 const Form = (props) => {
   const [currentURL, setURL] = useState("");
@@ -16,24 +17,14 @@ const Form = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Enter URL"
-        onChange={getURL}
-        ></input>
-      <input
-        type="submit"
-        value="Download"
-        ></input>
-      <button>
-        My Recipes
-      </button>
+      <input type="text" placeholder="Enter URL" onChange={getURL}></input>
+      <input type="submit" value="Download" id="submit-button" className="button"></input>
     </form>
   );
 };
 
 Form.propTypes = {
   onSubmit: PropTypes.func,
-}
+};
 
 export default Form;
