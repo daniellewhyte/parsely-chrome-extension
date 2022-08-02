@@ -52,10 +52,9 @@ const RecipeList = () => {
       </section>
       <section className="full-recipe-container">
         <h2>{fullRecipe.title}</h2>
-        <p>{fullRecipe.ingredients}</p>
-        <p>{fullRecipe.instructions}</p>
+        <section dangerouslySetInnerHTML={{__html: fullRecipe.ingredients}}></section>
+        <section dangerouslySetInnerHTML={{__html: fullRecipe.instructions}}></section>
       </section>
-
     </div>
   )
 };
