@@ -1,0 +1,25 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+
+.recipe-link-container {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    padding: 2rem;
+}
+.recipe-link {
+    background: none;
+    border: none;
+}
+
+.recipe-link:hover {
+    text-decoration: underline;
+}
+
+.full-recipe-container {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    margin-right: 2rem;
+}
