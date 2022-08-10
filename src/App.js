@@ -1,21 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import Form from "./Form.js";
+import Form from "./components/Form.js";
 import {
   postRecipeAsync,
   getAllRecipesAsync,
-  getFullRecipeAsync,
 } from "./apiCalls";
-import RecipeList from "./RecipeList";
 import { Link, Outlet } from "react-router-dom";
 
 function App() {
   const [recipeData, setRecipeData] = useState([]);
-  const [fullRecipe, setFullRecipe] = useState({
-    title: "",
-    instructions: "",
-    ingredients: "",
-  });
 
   const getAllRecipes = () => {
     getAllRecipesAsync()
@@ -44,25 +37,9 @@ function App() {
     postRecipe(url);
   };
 
-  const showRecipe = (id) => {
-    getFullRecipeAsync(id)
-      .then((recipe) => {
-        setFullRecipe(recipe);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  };
-
   return (
     <div className="main-popup">
       <Form onSubmit={onFormSubmit} />
-      {/* <RecipeList recipeData={recipeData} onButtonClick={showRecipe} />
-      <section>
-      <h2>{fullRecipe.title}</h2>
-      <p>{fullRecipe.ingredients}</p>
-      <p>{fullRecipe.instructions}</p>
-      </section> */}
       <div>
         <Link to="/my-recipes" target="_blank">
           {" "}
