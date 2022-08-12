@@ -72,7 +72,7 @@ const RecipeList = () => {
     const blob = new Blob([fileData], { type: "text/html" });
     const fileURL = URL.createObjectURL(blob);
     const link = document.createElement("a");
-    link.download = "fullRecipe.html";
+    link.download = `${fullRecipe.title}.html`;
     link.href = fileURL;
     link.click();
   };
