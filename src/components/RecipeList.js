@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import {
   getAllRecipesAsync,
   getFullRecipeAsync,
   deleteRecipeAsync,
 } from "../apiCalls";
 import "./RecipeList.css";
-import { useLinkClickHandler } from "react-router-dom";
 
 const RecipeList = () => {
   const [recipeData, setRecipeData] = useState([]);
@@ -15,6 +13,8 @@ const RecipeList = () => {
     instructions: "",
     ingredients: "",
   });
+  const [errMessage, setErrMessage] = useState("")
+
 
   const getAllRecipes = () => {
     getAllRecipesAsync()
@@ -34,6 +34,7 @@ const RecipeList = () => {
         setFullRecipe(recipe);
       })
       .catch((err) => {
+        setErrMessage("Error loading recipes");
         console.log(err.message);
       });
   };
@@ -60,6 +61,7 @@ const RecipeList = () => {
         });
       })
       .catch((err) => {
+        setErrMessage("Error deleting recipe");
         console.log(err.message);
       });
   };
@@ -85,7 +87,9 @@ const RecipeList = () => {
         <h2>{fullRecipe.title}</h2>
         <section
           dangerouslySetInnerHTML={{ __html: fullRecipe.ingredients }}
-        ></section>
+        >
+          {errMessage}
+        </section>
         <section
           dangerouslySetInnerHTML={{ __html: fullRecipe.instructions }}
         ></section>
