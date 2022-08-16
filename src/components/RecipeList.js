@@ -91,7 +91,7 @@ const RecipeList = () => {
         ></section>
         <section>
           {fullRecipe.id ? <button onClick={saveFile}>Export</button> : ""}
-          {fullRecipe.id ? <button onClick={deleteRecipe}>Delete</button> : ""}
+          {fullRecipe.id ? <button className= "delete-btn" onClick={deleteRecipe}>Delete</button> : ""}
         </section>
       </section>
     </div>

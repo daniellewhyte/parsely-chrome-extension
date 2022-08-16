@@ -23,3 +23,7 @@
     grid-column-end: 3;
     margin-right: 2rem;
 }
+
+.delete-btn {
+    margin: 10px;
+}

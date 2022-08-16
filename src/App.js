@@ -39,6 +39,7 @@ function App() {
 
   return (
     <div className="main-popup">
+      <h1>Parsely 🍃</h1>
       <Form onSubmit={onFormSubmit} />
       <div>
         <Link to="/my-recipes" target="_blank">
