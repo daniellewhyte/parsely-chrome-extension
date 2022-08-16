@@ -42,7 +42,7 @@ function App() {
       <h1>Parsely 🍃</h1>
       <Form onSubmit={onFormSubmit} />
       <div>
-        <Link to="/my-recipes" target="_blank">
+        <Link to="/my-recipes">
           {" "}
           <button className="button" id="my-recipes-btn">
             My Recipes
